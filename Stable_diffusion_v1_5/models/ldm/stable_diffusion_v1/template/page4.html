@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Upscale</title>
+  <link rel="stylesheet" href="/assets/css/main.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0
+  }
+  
+  html {
+      font-family: Helvetica, sans-serif;
+      font-size: 16px;
+      line-height: 1.5;
+      background-color: #fff
+  }
+  
+  ul {
+      list-style: none
+  }
+  
+  body {
+      margin: 0 auto;
+      background-color: #fff;
+      padding: 10px 0
+  }
+  
+  ul {
+      list-style: none
+  }
+  
+  nav {
+      height: 50px;
+      display: flex
+  }
+  
+  nav ul {
+      list-style: none;
+      display: flex;
+      margin: 0;
+      padding: 0
+  }
+  
+  nav li {
+      margin: 0 10px
+  }
+  
+  nav a {
+      display: block;
+      color: #000;
+      text-decoration: none;
+      padding: 15px 20px
+  }
+  
+  nav a:hover {
+      color: #b2acb4
+  }
+  
+  .container {
+      width: 98%;
+      background-color: #fff;
+      display: flex;
+      margin: auto;
+      border: solid 1px #b2acb4;
+      padding-bottom: 20px;
+      margin-top: 30px
+  }
+  
+  .container .left {
+      width: 49%
+  }
+  
+  .container .left button {
+      width: 97%;
+      height: 40px;
+      margin-top: 20px;
+      border-radius: 5px;
+      border: solid 1px #b2acb4;
+      margin-left: 10px;
+      cursor: pointer
+  }
+  
+  .container .left button:hover {
+      background-color: #fff
+  }
+  
+  .container .left #image-dropzone {
+      width: 97%;
+      margin: auto;
+      margin-top: 20px;
+      height: 300px;
+      border: 2px dashed gray
+  }
+  
+  .container .left #image-dropzone #image-input {
+      width: 500px;
+      height: 300px
+  }
+  
+  .container .left p {
+      margin-top: 10px;
+      text-align: left;
+      margin-left: 20px
+  }
+  
+  .container .left select {
+      width: 95%;
+      height: 38px;
+      border-radius: 5px;
+      margin-top: 10px;
+      margin-bottom: 10px
+  }
+  
+  .container .left select::placeholder {
+      color: gray
+  }
+  
+  .container .right {
+      width: 49%;
+      margin-left: 2%
+  }
+  
+  .container .right #image-dropzone {
+      width: 97%;
+      margin: auto;
+      margin-top: 20px;
+      height: 300px;
+      border: 2px dashed gray
+  }
+  
+  .container .right #image-dropzone #image-input {
+      width: 500px;
+      height: 300px
+  }
+  
+  #image-dropzone {
+      width: 500px;
+      height: 300px;
+      border: 2px dashed gray
+  }
+  
+  #image-dropzone #image-input {
+      width: 500px;
+      height: 300px
+  }
+  
+  .container-item {
+      width: 98%;
+      margin: auto;
+      margin-top: 20px;
+      border-radius: 5px;
+      text-align: center;
+      border: solid 1px #b2acb4
+  }
+  
+  .container-item input {
+      width: 95%;
+      height: 38px;
+      border-radius: 5px;
+      margin-top: 10px;
+      margin-bottom: 10px;
+      border: solid 1px #b2acb4
+  }
+  
+  .container-item input::placeholder {
+      color: gray;
+      padding-left: 20px
+  }
+  
+  .container-item label {
+      display: flex;
+      line-height: 40px
+  }
+  
+  .container-item label input {
+      height: 20px;
+      width: 20px;
+      margin-left: 10px;
+      margin-right: 10px;
+      border: solid 1px #b2acb4
+  }
+  
+  .below {
+      display: flex;
+      width: 98%;
+      margin: auto;
+      margin-top: 20px
+  }
+  
+  .below .left_left {
+      border-radius: 5px;
+      width: 48%;
+      padding-bottom: 20px
+  }
+  
+  .below .left_left .container-item {
+      width: 98%;
+      margin-top: 20px;
+      border-radius: 5px;
+      border: solid 1px #b2acb4;
+      text-align: center
+  }
+  
+  .below .left_left .container-item p {
+      margin-top: 10px;
+      text-align: left;
+      margin-left: 10px
+  }
+  
+  .below .left_left .container-item select {
+      width: 95%;
+      height: 38px;
+      border-radius: 5px;
+      margin-top: 10px;
+      margin-bottom: 10px;
+      border: solid 1px #b2acb4
+  }
+  
+  .below .left_left .container-item select::placeholder {
+      color: gray
+  }
+  
+  .below .left_right {
+      width: 48%;
+      margin-left: 4%;
+      padding-bottom: 10px;
+      border-radius: 5px
+  }
+  
+  .below .left_right .container-item {
+      width: 98%;
+      margin-top: 20px;
+      border-radius: 5px;
+      border: solid 1px #b2acb4;
+      text-align: center
+  }
+  
+  .below .left_right .container-item p {
+      margin-top: 10px;
+      text-align: left;
+      margin-left: 10px
+  }
+  
+  .below .left_right .container-item select {
+      width: 95%;
+      height: 38px;
+      border-radius: 5px;
+      margin-top: 10px;
+      margin-bottom: 10px
+  }
+  
+  .below .left_right .container-item select::placeholder {
+      color: gray
+  }
+  
+  #image-dropzone {
+      width: 500px;
+      height: 300px;
+      border: 2px dashed gray
+  }
+  
+  #image-dropzone #image-input {
+      width: 500px;
+      height: 300px
+  }
+  </style>
+</head>
+<body>
+  <nav>
+    <ul>
+        <li><a href="/">Text2Img</a></li>
+        <li><a href="/img2img">Img2Img</a></li>
+        <li><a href="./inpaint">Inpaint</a></li>
+        <li><a href="/upscale">Upscale</a></li>
+    </ul>
+  </nav>
+  <div class="container">
+    <div class="left">
+        <div id="image-dropzone">
+            <img id="image-preview" style="display:none; max-width: 500px; max-height: 275px;">
+            <input type="file" id="image-input" accept="image/*">
+          </div>
+          
+      
+      <div class="below">
+        <div class="left_left">
+          <div class="container-item">
+            <label for="">
+                <input type="checkbox" checked>Face Upsample
+            </label>
+            <hr>
+            <div class="item">
+              <p>
+                Upscale: <b><span id="Upscale"></span></b>
+              </p>
+              <div class="slidecontainer">
+                <input type="range" min="1" max="4" value="2" class="slider" id="UpscaleRange">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="left_right">
+          <div class="container-item">
+            <label for="">
+                <input type="checkbox" checked>Background Enhance
+            </label>
+            <hr>
+            <div class="item">
+                <p>
+                    Codeformer Fidelity: <b><span id="Fidelity"></span></b>
+                </p>
+                <div class="slidecontainer">
+                  <input type="range" min="1" max="10" value="1" class="slider" id="FidelityRange">
+                </div>
+              </div>
+          </div>
+        </div>
+        </div>
+        <button class="button" id="hi">Generator</button>
+      </div>
+      <div class="right">
+        <div id="image-dropzone">
+          <img id="" style="display:none; max-width: 500px; max-height: 300px;">
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+
+
+
+  <script>
+    //load img
+    const inputElement = document.getElementById("image-input");
+    const previewElement = document.getElementById("image-preview");
+
+    inputElement.addEventListener("change", (e) => {
+      const file = e.target.files[0];
+      const reader = new FileReader();
+
+      reader.onload = (event) => {
+        previewElement.src = event.target.result;
+        previewElement.style.display = "block";
+      };
+
+  reader.readAsDataURL(file);
+});
+
+
+    //slider Upscale
+    var UpscaleRange = document.getElementById("UpscaleRange");
+    var output = document.getElementById("Upscale");
+    output.innerHTML = UpscaleRange.value;
+
+    UpscaleRange.oninput = function(){
+      output.innerHTML = this.value;
+    }
+
+
+    //slider Fidelity
+    var FidelityRange = document.getElementById("FidelityRange");
+    var output1= document.getElementById("Fidelity")
+    output1.innerHTML = FidelityRange.value;
+
+    FidelityRange.oninput = function(){
+      output1.innerHTML = this.value;
+    }
+
+
+
+
+  </script>
+</body>
+</html>

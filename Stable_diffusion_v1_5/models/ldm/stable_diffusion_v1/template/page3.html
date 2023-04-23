@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Inpaint</title>
+  <link rel="stylesheet" href="/assets/css/main.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0
+  }
+  
+  html {
+      font-family: Helvetica, sans-serif;
+      font-size: 16px;
+      line-height: 1.5;
+      background-color: #fff
+  }
+  
+  ul {
+      list-style: none
+  }
+  
+  body {
+      margin: 0 auto;
+      background-color: #fff;
+      padding: 10px 0
+  }
+  
+  ul {
+      list-style: none
+  }
+  
+  nav {
+      height: 50px;
+      display: flex
+  }
+  
+  nav ul {
+      list-style: none;
+      display: flex;
+      margin: 0;
+      padding: 0
+  }
+  
+  nav li {
+      margin: 0 10px
+  }
+  
+  nav a {
+      display: block;
+      color: #000;
+      text-decoration: none;
+      padding: 15px 20px
+  }
+  
+  nav a:hover {
+      color: #b2acb4
+  }
+  
+  .container {
+      width: 98%;
+      background-color: #fff;
+      display: flex;
+      margin: auto;
+      border: solid 1px #b2acb4;
+      padding-bottom: 20px;
+      margin-top: 30px
+  }
+  
+  .container .left {
+      width: 49%
+  }
+  
+  .container .left button {
+      width: 97%;
+      height: 40px;
+      margin-top: 20px;
+      border-radius: 5px;
+      border: solid 1px #b2acb4;
+      margin-left: 10px;
+      cursor: pointer
+  }
+  
+  .container .left button:hover {
+      background-color: #fff
+  }
+  
+  .container .left #image-dropzone {
+      width: 97%;
+      margin: auto;
+      margin-top: 20px;
+      height: 300px;
+      border: 2px dashed gray
+  }
+  
+  .container .left #image-dropzone #image-input {
+      width: 500px;
+      height: 300px
+  }
+  
+  .container .left p {
+      margin-top: 10px;
+      text-align: left;
+      margin-left: 20px
+  }
+  
+  .container .left select {
+      width: 95%;
+      height: 38px;
+      border-radius: 5px;
+      margin-top: 10px;
+      margin-bottom: 10px
+  }
+  
+  .container .left select::placeholder {
+      color: gray
+  }
+  
+  .container .right {
+      width: 49%;
+      margin-left: 2%
+  }
+  
+  .container .right #image-dropzone {
+      width: 97%;
+      margin: auto;
+      margin-top: 20px;
+      height: 300px;
+      border: 2px dashed gray
+  }
+  
+  .container .right #image-dropzone #image-input {
+      width: 500px;
+      height: 300px
+  }
+  
+  #image-dropzone {
+      width: 500px;
+      height: 300px;
+      border: 2px dashed gray
+  }
+  
+  #image-dropzone #image-input {
+      width: 500px;
+      height: 300px
+  }
+  
+  .container-item {
+      width: 98%;
+      margin: auto;
+      margin-top: 20px;
+      border-radius: 5px;
+      text-align: center;
+      border: solid 1px #b2acb4
+  }
+  
+  .container-item input {
+      width: 95%;
+      height: 38px;
+      border-radius: 5px;
+      margin-top: 10px;
+      margin-bottom: 10px;
+      border: solid 1px #b2acb4
+  }
+  
+  .container-item input::placeholder {
+      color: gray;
+      padding-left: 20px
+  }
+  
+  .container-item label {
+      display: flex;
+      line-height: 40px
+  }
+  
+  .container-item label input {
+      height: 20px;
+      width: 20px;
+      margin-left: 10px;
+      margin-right: 10px;
+      border: solid 1px #b2acb4
+  }
+  
+  .below {
+      display: flex;
+      width: 98%;
+      margin: auto;
+      margin-top: 20px
+  }
+  
+  .below .left_left {
+      border-radius: 5px;
+      width: 48%;
+      padding-bottom: 20px
+  }
+  
+  .below .left_left .container-item {
+      width: 98%;
+      margin-top: 20px;
+      border-radius: 5px;
+      border: solid 1px #b2acb4;
+      text-align: center
+  }
+  
+  .below .left_left .container-item p {
+      margin-top: 10px;
+      text-align: left;
+      margin-left: 10px
+  }
+  
+  .below .left_left .container-item select {
+      width: 95%;
+      height: 38px;
+      border-radius: 5px;
+      margin-top: 10px;
+      margin-bottom: 10px;
+      border: solid 1px #b2acb4
+  }
+  
+  .below .left_left .container-item select::placeholder {
+      color: gray
+  }
+  
+  .below .left_right {
+      width: 48%;
+      margin-left: 4%;
+      padding-bottom: 10px;
+      border-radius: 5px
+  }
+  
+  .below .left_right .container-item {
+      width: 98%;
+      margin-top: 20px;
+      border-radius: 5px;
+      border: solid 1px #b2acb4;
+      text-align: center
+  }
+  
+  .below .left_right .container-item p {
+      margin-top: 10px;
+      text-align: left;
+      margin-left: 10px
+  }
+  
+  .below .left_right .container-item select {
+      width: 95%;
+      height: 38px;
+      border-radius: 5px;
+      margin-top: 10px;
+      margin-bottom: 10px
+  }
+  
+  .below .left_right .container-item select::placeholder {
+      color: gray
+  }
+  
+  #image-dropzone {
+      width: 500px;
+      height: 300px;
+      border: 2px dashed gray
+  }
+  
+  #image-dropzone #image-input {
+      width: 500px;
+      height: 300px
+  }
+  </style>
+</head>
+<body>
+  <nav>
+    <ul>
+        <li><a href="/">Text2Img</a></li>
+        <li><a href="/img2img">Img2Img</a></li>
+        <li><a href="./inpaint">Inpaint</a></li>
+        <li><a href="/upscale">Upscale</a></li>
+    </ul>
+  </nav>
+  <div class="container">
+    <div class="left">
+        <div id="image-dropzone">
+            <img id="image-preview" style="display:none; max-width: 500px; max-height: 275px;">
+            <input type="file" id="image-input" accept="image/*">
+          </div>
+          
+
+      <div class="container-item">
+        <input type="text" class="input " placeholder="Prompt">
+        <input type="text" class="input " placeholder="Negative Prompt">
+      </div>
+      <div class="container-item">
+        <p>
+            Inpaint Model Id
+        </p>
+        <select name="loai">
+          <option value="runwayml/stable-diffusion-v1-5">runwayml/stable-diffusion-v1-5</option>
+          <option value="stabilityai/stable-diffusion-2-1">stabilityai/stable-diffusion-2-1</option>
+          <option value="prompthero/openjourney-v4">prompthero/openjourney-v4</option>
+          <option value="wavymulder/Analog-Diffusion">wavymulder/Analog-Diffusion</option>
+          <option value="dreamlike-art/dreamlike-diffusion-1.0">dreamlike-art/dreamlike-diffusion-1.0</option>
+          <option value="gsdf/Counterfeit-V2.5">gsdf/Counterfeit-V2.5</option>
+          <option value="dreamlike-art/dreamlike-photoreal-2.0">dreamlike-art/dreamlike-photoreal-2.0</option>
+        </select>
+      </div>
+      <div class="below">
+        <div class="left_left">
+          <div class="container-item">
+            <div class="item">
+              <p>
+                Guidance Scale: <b><span id="Guidance"></span></b>
+              </p>
+              <div class="slidecontainer">
+                <input type="range" min="1" max="15.0" value="7" class="slider" id="myRange">
+              </div>
+            </div>
+            <hr>
+            <div class="item">
+              <p>
+                Num Inference Step: <b><span id="Inference"></span></b>
+              </p>
+              <div class="slidecontainer">
+                <input type="range" min="1" max="100" value="50" class="slider" id="InferenceRange">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="left_right">
+          <div class="container-item">
+            <div class="item">
+                <p>
+                  Number Of Images: <b><span id="NumImg"></span></b>
+                </p>
+                <div class="slidecontainer">
+                  <input type="range" min="1" max="30" value="1" class="slider" id="NumImgRange">
+                </div>
+              </div>
+            
+            <hr>
+            <div class="item">
+              <p>
+                Seed(0 for random): <b><span id="seed"></span></b>
+              </p>
+              <div class="slidecontainer">
+                <input type="range" min="0" max="1000000" value="0" class="slider" id="seedRange">
+              </div>
+            </div>
+          </div>
+        </div>
+        </div>
+        <button class="button" id="hi">Generator</button>
+      </div>
+      <div class="right">
+        <div id="image-dropzone">
+          <img id="" style="display:none; max-width: 500px; max-height: 300px;">
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+
+
+
+  <script>
+    //load img
+    const inputElement = document.getElementById("image-input");
+    const previewElement = document.getElementById("image-preview");
+
+    inputElement.addEventListener("change", (e) => {
+      const file = e.target.files[0];
+      const reader = new FileReader();
+
+      reader.onload = (event) => {
+        previewElement.src = event.target.result;
+        previewElement.style.display = "block";
+      };
+
+  reader.readAsDataURL(file);
+});
+
+
+    //slider Guidance
+    var slider = document.getElementById("myRange");
+    var output = document.getElementById("Guidance");
+    output.innerHTML = slider.value;
+
+    slider.oninput = function(){
+      output.innerHTML = this.value;
+    }
+
+
+    //slider Inference
+    var InferenceRange = document.getElementById("InferenceRange");
+    var output1= document.getElementById("Inference")
+    output1.innerHTML = InferenceRange.value;
+
+    InferenceRange.oninput = function(){
+      output1.innerHTML = this.value;
+    }
+
+    //slider NumImg
+    var NumImgRange = document.getElementById("NumImgRange");
+    var output2= document.getElementById("NumImg")
+    output2.innerHTML = NumImgRange.value;
+
+    NumImgRange.oninput = function(){
+      output2.innerHTML = this.value;
+    }
+
+     //slider seed
+     var seedRange = document.getElementById("seedRange");
+    var output5= document.getElementById("seed")
+    output5.innerHTML = seedRange.value;
+
+    seedRange.oninput = function(){
+      output5.innerHTML = this.value;
+    }
+
+
+
+
+  </script>
+</body>
+</html>
