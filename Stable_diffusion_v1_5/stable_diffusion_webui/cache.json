@@ -1,0 +1,12 @@
+{
+    "hashes": {
+        "checkpoint/768-v-ema.ckpt": {
+            "mtime": 1682065492.1944542,
+            "sha256": "bfcaf0755797b0c30eb00a3787e8b423eb1f5decd8de76c4d824ac2dd27e139f"
+        },
+        "checkpoint/v1-5-pruned-emaonly.ckpt": {
+            "mtime": 1682064997.3070755,
+            "sha256": "cc6cb27103417325ff94f52b7a5d2dde45a7515b25c255d8e396c90014281516"
+        }
+    }
+}
