@@ -1,0 +1,8 @@
+ Volume in drive F is HOCTAP
+ Volume Serial Number is 8698-8E6F
+
+ Directory of F:\DATN\Stable_diffusion_V1_5\Stable_diffusion_v1_5\stable-diffusion-webui\venv\Scripts
+
+21/04/2023  03:38 PM           518,144 python.exe
+               1 File(s)        518,144 bytes
+               0 Dir(s)  345,895,686,144 bytes free
